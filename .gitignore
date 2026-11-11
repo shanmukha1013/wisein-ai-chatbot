@@ -1,0 +1,34 @@
+# Secrets
+.env
+.env.*
+!.env.example
+secrets/
+credentials/
+*.pem
+*.key
+
+# Local data
+backend/wisein.db
+*.db-wal
+*.db-shm
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Vercel
+.vercel/
+
+# Source documents and generated artifacts (large, not needed to run)
+*.zip
+*.jsonl
+temp_80files/
+temp_wiseindocs/
+retrieve_output*.txt
+out_qdrant.txt
+latency_report.txt
+test_results*.txt
+e2e_test_output.txt
+extraction_report.json
+evaluation_report.md

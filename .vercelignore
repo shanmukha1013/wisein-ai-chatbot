@@ -1,0 +1,24 @@
+# Never upload secrets or local data
+.env
+.env.local
+backend/wisein.db
+backend/wisein.db-*
+**/__pycache__
+*.pyc
+
+# Source material and build leftovers (not needed at runtime)
+*.zip
+*.jsonl
+temp_80files
+temp_wiseindocs
+scripts
+retrieve_output*.txt
+out_qdrant.txt
+latency_report.txt
+test_results*.txt
+e2e_test_output.txt
+extraction_report.json
+evaluation_report.md
+extract.py
+generate_kb.py
+frontend/app.py

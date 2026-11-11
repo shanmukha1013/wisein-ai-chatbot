@@ -1,0 +1,725 @@
+[
+  {
+    "document_id": "WISEIN-KB-01",
+    "topic_number": "01",
+    "topic_name": "Introduction",
+    "source_files": [
+      "WiseIN Application Overview & Product Knowledge001.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-02",
+    "topic_number": "02",
+    "topic_name": "Terminology",
+    "source_files": [
+      "WISEIN TERMINOLOGY & GLOSSARY 002.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-03",
+    "topic_number": "03",
+    "topic_name": "Sign Up",
+    "source_files": [
+      "Untitled document.pdf",
+      "WiseIN Sign-Up Documentation 003.pdf",
+      "WISEIN \u2013 LOGIN & ACCOUNT ACCESS 004.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-04",
+    "topic_number": "04",
+    "topic_name": "Login",
+    "source_files": [
+      "WISEIN \u2013 LOGIN & ACCOUNT ACCESS 004.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-05",
+    "topic_number": "05",
+    "topic_name": "Password & Account Recovery",
+    "source_files": [],
+    "missing_information": "True - No source file found"
+  },
+  {
+    "document_id": "WISEIN-KB-06",
+    "topic_number": "06",
+    "topic_name": "Email Verification",
+    "source_files": [
+      "WISEIN EMAIL VERIFICATION DOCUMENTATION006.pdf",
+      "WISEIN-EMAIL-VERIFICATION-006.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-07",
+    "topic_number": "07",
+    "topic_name": "Identity Verification",
+    "source_files": [
+      "WISEIN IDENTITY VERIFICATION DOCUMENTATION007.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-08",
+    "topic_number": "08",
+    "topic_name": "Student Verification",
+    "source_files": [
+      "WISEIN \u2013 STUDENT VERIFICATION DOCUMENTATION-008.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-09",
+    "topic_number": "09",
+    "topic_name": "Onboarding",
+    "source_files": [
+      "WISEIN USER ONBOARDING DOCUMENTATION009.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-10",
+    "topic_number": "10",
+    "topic_name": "Home",
+    "source_files": [
+      "WISEIN-HOME-FEED-010.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-11",
+    "topic_number": "11",
+    "topic_name": "Feed",
+    "source_files": [
+      "WISEIN-FEED-ENGINE-011.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-12",
+    "topic_number": "12",
+    "topic_name": "Posts",
+    "source_files": [
+      "WISEIN-POSTS-012.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-13",
+    "topic_number": "13",
+    "topic_name": "Clips",
+    "source_files": [
+      "WISEIN-CLIPS-013.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-14",
+    "topic_number": "14",
+    "topic_name": "Explore",
+    "source_files": [
+      "WISEIN EXPLORE MODULE DOCUMENTATION014.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-15",
+    "topic_number": "15",
+    "topic_name": "Regular Search",
+    "source_files": [
+      "WISEIN REGULAR SEARCH DOCUMENTATION015.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-16",
+    "topic_number": "16",
+    "topic_name": "AI Search",
+    "source_files": [
+      "WISEIN AI SEARCH AND KNOWLEDGE RETRIEVAL DOCUMENTATION016.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-17",
+    "topic_number": "17",
+    "topic_name": "Topics",
+    "source_files": [
+      "WISEIN TOPICS DOCUMENTATION017.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-18",
+    "topic_number": "18",
+    "topic_name": "Waves",
+    "source_files": [
+      "WISEIN WAVES DOCUMENTATION018.pdf",
+      "_WISEIN WAVES DOCUMENTATION018.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-19",
+    "topic_number": "19",
+    "topic_name": "Jobs",
+    "source_files": [
+      "WISEIN JOBS MODULE DOCUMENTATION019.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-20",
+    "topic_number": "20",
+    "topic_name": "My Network",
+    "source_files": [
+      "20.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-21",
+    "topic_number": "21",
+    "topic_name": "Follow System",
+    "source_files": [
+      "21 (1).pdf",
+      "21.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-22",
+    "topic_number": "22",
+    "topic_name": "Connections",
+    "source_files": [
+      "22.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-23",
+    "topic_number": "23",
+    "topic_name": "Chat",
+    "source_files": [
+      "23.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-24",
+    "topic_number": "24",
+    "topic_name": "Messaging",
+    "source_files": [
+      "24.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-25",
+    "topic_number": "25",
+    "topic_name": "Meetings",
+    "source_files": [
+      "25.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-26",
+    "topic_number": "26",
+    "topic_name": "Calendar",
+    "source_files": [
+      "WISEIN-CALENDAR-026.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-27",
+    "topic_number": "27",
+    "topic_name": "Slot Booking",
+    "source_files": [
+      "WISEIN-SLOT-BOOKING-027.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-28",
+    "topic_number": "28",
+    "topic_name": "Webinars",
+    "source_files": [
+      "WISEIN-WEBINARS-028.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-29",
+    "topic_number": "29",
+    "topic_name": "Meeting Recording",
+    "source_files": [
+      "WISEIN-MEETING-RECORDING-029.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-30",
+    "topic_number": "30",
+    "topic_name": "Transcription",
+    "source_files": [
+      "WISEIN-TRANSCRIPTION-030.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-31",
+    "topic_number": "31",
+    "topic_name": "AI Meeting Summaries",
+    "source_files": [
+      "WISEIN \u2014 AI MEETING SUMMARIES -031.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-32",
+    "topic_number": "32",
+    "topic_name": "Profile",
+    "source_files": [
+      "WISEIN-PROFILE-032.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-33",
+    "topic_number": "33",
+    "topic_name": "Employment",
+    "source_files": [
+      "WISEIN-EMPLOYMENT-033.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-34",
+    "topic_number": "34",
+    "topic_name": "Education",
+    "source_files": [
+      "WISEIN-EDUCATION-034.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-35",
+    "topic_number": "35",
+    "topic_name": "Projects",
+    "source_files": [
+      "WISEIN-PROJECTS-035.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-36",
+    "topic_number": "36",
+    "topic_name": "Skills",
+    "source_files": [
+      "WISEIN-SKILLS-036.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-37",
+    "topic_number": "37",
+    "topic_name": "Profile Video",
+    "source_files": [
+      "WISEIN-PROFILE-VIDEO-037.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-38",
+    "topic_number": "38",
+    "topic_name": "Profile Analytics",
+    "source_files": [
+      "WISEIN-PROFILE-ANALYTICS-038.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-39",
+    "topic_number": "39",
+    "topic_name": "Organizations",
+    "source_files": [
+      "WISEIN-ORGANIZATION-039.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-40",
+    "topic_number": "40",
+    "topic_name": "Organization Verification",
+    "source_files": [
+      "WISEIN-ORGANIZATION-VERIFICATION-040.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-41",
+    "topic_number": "41",
+    "topic_name": "Organization Employees",
+    "source_files": [
+      "WISEIN-ORGANIZATION-EMPLOYEES-041.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-42",
+    "topic_number": "42",
+    "topic_name": "Organization Permissions",
+    "source_files": [
+      "WISEIN-ORGANIZATION-PERMISSIONS-042.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-43",
+    "topic_number": "43",
+    "topic_name": "Organization Jobs",
+    "source_files": [
+      "WISEIN-ORGANIZATION-JOBS-043.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-44",
+    "topic_number": "44",
+    "topic_name": "Organization Analytics",
+    "source_files": [
+      "WISEIN-ORGANIZATION-ANALYTICS-044.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-45",
+    "topic_number": "45",
+    "topic_name": "Communities",
+    "source_files": [
+      "WISEIN-COMMUNITIES-045.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-46",
+    "topic_number": "46",
+    "topic_name": "Events",
+    "source_files": [
+      "WISEIN-EVENTS-046.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-47",
+    "topic_number": "47",
+    "topic_name": "Founder Conversations",
+    "source_files": [
+      "WISEIN-FOUNDER-CONVERSATIONS-047.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-48",
+    "topic_number": "48",
+    "topic_name": "Leadership Conversations",
+    "source_files": [
+      "WISEIN-LEADERSHIP-CONVERSATIONS-048.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-49",
+    "topic_number": "49",
+    "topic_name": "Notifications",
+    "source_files": [
+      "WISEIN-NOTIFICATIONS-049.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-50",
+    "topic_number": "50",
+    "topic_name": "Scheduled Posts",
+    "source_files": [
+      "WISEIN-SCHEDULED-POSTS-050.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-51",
+    "topic_number": "51",
+    "topic_name": "Saved Content",
+    "source_files": [
+      "51.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-52",
+    "topic_number": "52",
+    "topic_name": "Ads",
+    "source_files": [
+      "52.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-53",
+    "topic_number": "53",
+    "topic_name": "Subscriptions",
+    "source_files": [
+      "53.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-54",
+    "topic_number": "54",
+    "topic_name": "Payments",
+    "source_files": [
+      "54.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-55",
+    "topic_number": "55",
+    "topic_name": "Billing",
+    "source_files": [
+      "55.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-56",
+    "topic_number": "56",
+    "topic_name": "Privacy",
+    "source_files": [
+      "56.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-57",
+    "topic_number": "57",
+    "topic_name": "Security",
+    "source_files": [
+      "57.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-58",
+    "topic_number": "58",
+    "topic_name": "Blocking",
+    "source_files": [
+      "58.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-59",
+    "topic_number": "59",
+    "topic_name": "Reporting",
+    "source_files": [
+      "59.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-60",
+    "topic_number": "60",
+    "topic_name": "Community Guidelines",
+    "source_files": [
+      "60.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-61",
+    "topic_number": "61",
+    "topic_name": "Content Policies",
+    "source_files": [
+      "61.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-62",
+    "topic_number": "62",
+    "topic_name": "Terms & Conditions",
+    "source_files": [
+      "62.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-63",
+    "topic_number": "63",
+    "topic_name": "Account Deactivation",
+    "source_files": [
+      "63.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-64",
+    "topic_number": "64",
+    "topic_name": "Account Deletion",
+    "source_files": [
+      "64.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-65",
+    "topic_number": "65",
+    "topic_name": "Logout",
+    "source_files": [
+      "65.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-66",
+    "topic_number": "66",
+    "topic_name": "Troubleshooting",
+    "source_files": [
+      "66.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-67",
+    "topic_number": "67",
+    "topic_name": "Error Codes",
+    "source_files": [
+      "67.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-68",
+    "topic_number": "68",
+    "topic_name": "Customer Support",
+    "source_files": [
+      "68.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-69",
+    "topic_number": "69",
+    "topic_name": "Human Escalation",
+    "source_files": [
+      "69.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-70",
+    "topic_number": "70",
+    "topic_name": "FAQ",
+    "source_files": [
+      "70.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-71",
+    "topic_number": "71",
+    "topic_name": "Mobile App",
+    "source_files": [
+      "71.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-72",
+    "topic_number": "72",
+    "topic_name": "Website",
+    "source_files": [
+      "72.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-73",
+    "topic_number": "73",
+    "topic_name": "AI Assistant",
+    "source_files": [
+      "73.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-74",
+    "topic_number": "74",
+    "topic_name": "AI Limitations",
+    "source_files": [
+      "74.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-75",
+    "topic_number": "75",
+    "topic_name": "Conversation History",
+    "source_files": [
+      "75.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-76",
+    "topic_number": "76",
+    "topic_name": "AI Tools",
+    "source_files": [
+      "76.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-77",
+    "topic_number": "77",
+    "topic_name": "RAG Knowledge",
+    "source_files": [
+      "77.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-78",
+    "topic_number": "78",
+    "topic_name": "Security for AI",
+    "source_files": [
+      "78.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-79",
+    "topic_number": "79",
+    "topic_name": "AI Analytics",
+    "source_files": [
+      "79.pdf"
+    ],
+    "missing_information": "False"
+  },
+  {
+    "document_id": "WISEIN-KB-80",
+    "topic_number": "80",
+    "topic_name": "Knowledge Management",
+    "source_files": [
+      "80.pdf"
+    ],
+    "missing_information": "False"
+  }
+]

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WiseIN AI Admin</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 44'%3E%3Crect width='52' height='44' rx='10' fill='%232F80ED'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --blue: #2F80ED; --blue-dark: #1F60B8; --blue-light: #EFF6FF; --blue-subtle: #DBEAFE;
+      --bg: #F8FAFC; --white: #FFFFFF; --text-dark: #1E293B; --text-mid: #64748B; --text-muted: #94A3B8;
+      --border: #E2E8F0; --grid: #EEF2F6;
+      --good-bg: #ECFDF5; --good: #047857; --warn-bg: #FFFBEB; --warn: #B45309; --bad-bg: #FEF2F2; --bad: #B91C1C;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: var(--font); margin: 0; background: var(--bg); color: var(--text-dark); font-size: 14px; }
+    button, input, textarea, select { font-family: inherit; font-size: 14px; }
+    .hidden { display: none !important; }
+
+    /* login */
+    .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 16px; }
+    .login-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; padding: 28px; width: 100%; max-width: 360px; box-shadow: 0 10px 30px rgba(15,23,42,.06); }
+    .login-card h1 { font-size: 20px; margin: 0 0 4px; color: var(--blue); }
+    .login-card p { color: var(--text-mid); margin: 0 0 20px; font-size: 13px; }
+    label { display: block; font-size: 12px; font-weight: 600; color: var(--text-mid); margin: 12px 0 6px; }
+    input[type=text], input[type=password], textarea, select {
+      width: 100%; padding: 9px 11px; border: 1px solid var(--border); border-radius: 8px; background: var(--white); color: var(--text-dark);
+    }
+    input:focus, textarea:focus, select:focus { outline: 2px solid var(--blue-subtle); border-color: var(--blue); }
+    textarea { min-height: 220px; resize: vertical; line-height: 1.5; }
+    .btn { padding: 9px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); color: var(--text-dark); cursor: pointer; font-weight: 500; }
+    .btn:hover { background: var(--bg); }
+    .btn.primary { background: var(--blue); border-color: var(--blue-dark); color: var(--white); }
+    .btn.primary:hover { background: var(--blue-dark); }
+    .btn.danger { color: var(--bad); }
+    .btn.small { padding: 5px 10px; font-size: 12px; }
+    .btn:disabled { opacity: .6; cursor: default; }
+    .error { color: var(--bad); font-size: 13px; margin-top: 10px; min-height: 18px; }
+
+    /* layout */
+    .app { display: flex; min-height: 100vh; }
+    .sidebar { width: 230px; background: var(--white); border-right: 1px solid var(--border); padding: 20px 14px; flex-shrink: 0; display: flex; flex-direction: column; }
+    .sidebar h2 { font-size: 17px; margin: 4px 8px 24px; color: var(--blue); }
+    .nav-btn { display: block; width: 100%; text-align: left; padding: 10px 12px; margin-bottom: 4px; background: none; border: none; cursor: pointer; border-radius: 8px; color: var(--text-dark); }
+    .nav-btn:hover { background: var(--bg); }
+    .nav-btn.active { background: var(--blue); color: var(--white); }
+    .nav-badge { float: right; background: var(--bad-bg); color: var(--bad); border-radius: 10px; padding: 0 7px; font-size: 12px; font-weight: 600; }
+    .nav-btn.active .nav-badge { background: rgba(255,255,255,.25); color: var(--white); }
+    .sidebar-foot { margin-top: auto; font-size: 12px; color: var(--text-mid); padding: 8px; }
+    .sidebar-foot a { color: var(--blue); cursor: pointer; }
+    .content { flex: 1; padding: 28px; overflow-y: auto; min-width: 0; }
+    .page-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+    .page-head h3 { margin: 0; font-size: 20px; }
+    .card { background: var(--white); padding: 18px 20px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 18px; }
+    .card h4 { margin: 0 0 12px; font-size: 14px; }
+    .muted { color: var(--text-mid); font-size: 13px; }
+
+    /* stat tiles */
+    .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 18px; }
+    .tile { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+    .tile .label { font-size: 12px; color: var(--text-mid); }
+    .tile .value { font-size: 28px; font-weight: 600; margin-top: 6px; font-variant-numeric: tabular-nums; }
+    .tile .sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    /* bar chart: conversations per day */
+    .chart { position: relative; height: 180px; display: flex; align-items: flex-end; gap: 2px; padding: 0 0 0 0; border-bottom: 1px solid var(--border);
+             background-image: linear-gradient(var(--grid) 1px, transparent 1px); background-size: 100% 45px; }
+    .bar-hit { flex: 1; height: 100%; display: flex; align-items: flex-end; justify-content: center; cursor: default; position: relative; }
+    .bar { width: 100%; max-width: 28px; background: var(--blue); border-radius: 4px 4px 0 0; min-height: 0; transition: opacity .15s; }
+    .bar.zero { height: 2px !important; background: var(--border); border-radius: 0; }
+    .bar-hit:hover .bar { opacity: .75; }
+    .chart-x { display: flex; gap: 2px; margin-top: 6px; }
+    .chart-x span { flex: 1; text-align: center; font-size: 11px; color: var(--text-muted); white-space: nowrap; overflow: hidden; }
+    .tooltip { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--text-dark); color: var(--white);
+               font-size: 12px; padding: 5px 8px; border-radius: 6px; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity .1s; z-index: 2; }
+    .bar-hit:hover .tooltip { opacity: 1; }
+    .chart-max { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+
+    /* ranked list */
+    .rank-row { display: grid; grid-template-columns: minmax(90px, 160px) 1fr 36px; gap: 10px; align-items: center; margin-bottom: 8px; font-size: 13px; }
+    .rank-track { height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+    .rank-fill { height: 100%; background: var(--blue); border-radius: 4px; }
+    .rank-row .num { text-align: right; color: var(--text-mid); font-variant-numeric: tabular-nums; }
+
+    /* tables */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px 10px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+    th { color: var(--text-mid); font-weight: 500; font-size: 12px; white-space: nowrap; }
+    tr.clickable { cursor: pointer; }
+    tr.clickable:hover td { background: var(--bg); }
+    .badge { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 10px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+    .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .badge.OPEN { background: var(--bad-bg); color: var(--bad); }
+    .badge.IN_PROGRESS { background: var(--warn-bg); color: var(--warn); }
+    .badge.RESOLVED, .badge.PUBLISHED { background: var(--good-bg); color: var(--good); }
+    .badge.DRAFT, .badge.ARCHIVED { background: var(--bg); color: var(--text-mid); }
+    .actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .empty { color: var(--text-mid); padding: 18px 4px; text-align: center; }
+
+    /* drawer */
+    .drawer-back { position: fixed; inset: 0; background: rgba(15,23,42,.35); z-index: 20; }
+    .drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(560px, 100vw); background: var(--white); z-index: 21; display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(15,23,42,.1); }
+    .drawer-head { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .drawer-head h4 { margin: 0; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .drawer-body { padding: 18px 20px; overflow-y: auto; flex: 1; }
+    .msg { margin-bottom: 14px; }
+    .msg .who { font-size: 11px; font-weight: 600; color: var(--text-mid); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .03em; }
+    .msg .text { white-space: pre-wrap; line-height: 1.5; padding: 10px 12px; border-radius: 10px; background: var(--bg); border: 1px solid var(--border); word-wrap: break-word; }
+    .msg.user .text { background: var(--blue-light); border-color: var(--blue-subtle); }
+    .msg .meta { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+    .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--text-dark); color: var(--white); padding: 10px 16px; border-radius: 8px; font-size: 13px; z-index: 30; }
+
+    @media (max-width: 800px) {
+      .app { flex-direction: column; }
+      .sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; align-items: center; padding: 10px 16px; border-right: none; border-bottom: 1px solid var(--border); }
+      .sidebar h2 { margin: 0 12px 0 0; width: 100%; }
+      .nav-btn { width: auto; display: inline-block; }
+      .sidebar-foot { margin: 0 0 0 auto; }
+      .content { padding: 18px 16px; }
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- LOGIN -->
+  <div class="login-wrap hidden" id="login-view">
+    <form class="login-card" id="login-form">
+      <h1>WiseIN Admin</h1>
+      <p>Sign in to manage the AI support assistant.</p>
+      <label for="username">Username</label>
+      <input type="text" id="username" autocomplete="username" required value="admin">
+      <label for="password">Password</label>
+      <input type="password" id="password" autocomplete="current-password" required autofocus>
+      <div class="error" id="login-error"></div>
+      <button class="btn primary" type="submit" style="width:100%;margin-top:6px;">Sign in</button>
+    </form>
+  </div>
+
+  <!-- APP -->
+  <div class="app hidden" id="app-view">
+    <div class="sidebar">
+      <h2>WiseIN Admin</h2>
+      <button class="nav-btn active" data-tab="analytics">Analytics</button>
+      <button class="nav-btn" data-tab="conversations">Conversations</button>
+      <button class="nav-btn" data-tab="tickets">Support Tickets <span class="nav-badge hidden" id="ticket-badge"></span></button>
+      <button class="nav-btn" data-tab="knowledge">Knowledge Base</button>
+      <div class="sidebar-foot">Signed in as <b id="me-name"></b><br><a id="logout-link">Log out</a> · <a href="/support" target="_blank" rel="noopener">Open chat ↗</a></div>
+    </div>
+    <div class="content" id="main-content"></div>
+  </div>
+
+  <div id="drawer-root"></div>
+
+  <script>
+    const $ = (sel, root = document) => root.querySelector(sel);
+    const esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const fmtDate = d => d ? new Date(String(d).replace(' ', 'T') + (/[zZ]|[+-]\d\d:?\d\d$/.test(d) ? '' : 'Z')).toLocaleString() : '';
+    const STATUS_LABEL = { OPEN: 'Open', IN_PROGRESS: 'In progress', RESOLVED: 'Resolved', DRAFT: 'Draft', PUBLISHED: 'Published', ARCHIVED: 'Archived' };
+    const badge = s => `<span class="badge ${esc(s)}">${esc(STATUS_LABEL[s] || s)}</span>`;
+    let me = null, currentTab = 'analytics';
+
+    function toast(msg) {
+      const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg;
+      document.body.appendChild(t); setTimeout(() => t.remove(), 2500);
+    }
+
+    async function api(path, opts = {}) {
+      const res = await fetch(path, { credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, ...opts });
+      if (res.status === 401) { showLogin(); throw new Error('unauthorized'); }
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(typeof data.detail === 'string' ? data.detail : `Request failed (${res.status})`);
+      return data;
+    }
+
+    // ---------------- auth
+    function showLogin(msg) {
+      $('#app-view').classList.add('hidden'); $('#login-view').classList.remove('hidden');
+      $('#login-error').textContent = msg || ''; $('#password').focus();
+    }
+    async function boot() {
+      try {
+        const res = await fetch('/api/auth/me', { credentials: 'same-origin' });
+        if (!res.ok) return showLogin();
+        me = await res.json();
+        if (!['ADMIN', 'SUPPORT_AGENT'].includes(me.role)) return showLogin('This account does not have admin access.');
+        $('#me-name').textContent = me.username;
+        document.querySelector('[data-tab="knowledge"]').classList.toggle('hidden', me.role !== 'ADMIN');
+        $('#login-view').classList.add('hidden'); $('#app-view').classList.remove('hidden');
+        loadTab(currentTab);
+      } catch (e) { showLogin('Could not reach the server.'); }
+    }
+    $('#login-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button'); btn.disabled = true; $('#login-error').textContent = '';
+      try {
+        const res = await fetch('/api/auth/login', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: $('#username').value.trim(), password: $('#password').value }) });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) { $('#login-error').textContent = data.detail || 'Login failed'; return; }
+        $('#password').value = ''; boot();
+      } finally { btn.disabled = false; }
+    });
+    $('#logout-link').addEventListener('click', async () => { await fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' }); showLogin(); });
+
+    // ---------------- tabs
+    document.querySelectorAll('.nav-btn').forEach(b => b.addEventListener('click', () => loadTab(b.dataset.tab)));
+    async function loadTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      const content = $('#main-content');
+      content.innerHTML = '<div class="muted">Loading…</div>';
+      try {
+        if (tab === 'analytics') await renderAnalytics(content);
+        else if (tab === 'conversations') await renderConversations(content);
+        else if (tab === 'tickets') await renderTickets(content);
+        else if (tab === 'knowledge') await renderKnowledge(content);
+      } catch (e) {
+        if (e.message !== 'unauthorized') content.innerHTML = `<div class="card error">${esc(e.message)}</div>`;
+      }
+    }
+
+    // ---------------- analytics
+    async function renderAnalytics(el) {
+      const d = await api('/api/features/admin/analytics');
+      updateTicketBadge(d.open_tickets);
+      const rated = d.feedback_up + d.feedback_down;
+      const helpful = rated ? Math.round(d.feedback_up / rated * 100) + '%' : '—';
+      const days = d.conversations_per_day || [];
+      const max = Math.max(1, ...days.map(x => x.count));
+      const bars = days.map(x => {
+        const h = Math.round(x.count / max * 100);
+        const label = new Date(x.date + 'T00:00:00').toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        return `<div class="bar-hit"><div class="tooltip">${esc(label)}: ${x.count} conversation${x.count === 1 ? '' : 's'}</div><div class="bar ${x.count ? '' : 'zero'}" style="height:${h}%"></div></div>`;
+      }).join('');
+      const xLabels = days.map((x, i) => `<span>${i % 2 === 0 ? esc(new Date(x.date + 'T00:00:00').toLocaleDateString(undefined, { day: 'numeric', month: 'short' })) : ''}</span>`).join('');
+      const topMax = Math.max(1, ...(d.top_topics || []).map(t => t.count));
+      const topics = (d.top_topics || []).map(t => `<div class="rank-row"><span title="${esc(t.topic)}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(t.topic)}</span><div class="rank-track"><div class="rank-fill" style="width:${t.count / topMax * 100}%"></div></div><span class="num">${t.count}</span></div>`).join('') || '<div class="empty">No answered questions yet.</div>';
+      const unanswered = (d.recent_unanswered || []).map(u => `<tr><td>${esc(u.query)}</td><td class="muted" style="white-space:nowrap">${esc(fmtDate(u.created_at))}</td></tr>`).join('');
+      const events = Object.entries(d.events_breakdown || {}).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<tr><td>${esc(k)}</td><td style="text-align:right">${v}</td></tr>`).join('');
+      const fmtMs = v => v == null ? '—' : (v < 1000 ? `${v} ms` : `${(v / 1000).toFixed(1)} s`);
+
+      el.innerHTML = `
+        <div class="page-head"><h3>Analytics</h3><button class="btn" onclick="loadTab('analytics')">Refresh</button></div>
+        <div class="tiles">
+          <div class="tile"><div class="label">Conversations</div><div class="value">${d.total_conversations}</div></div>
+          <div class="tile"><div class="label">Questions asked</div><div class="value">${d.total_messages}</div></div>
+          <div class="tile"><div class="label">Typical response start</div><div class="value">${fmtMs(d.median_first_token_ms)}</div><div class="sub">median · average ${fmtMs(d.avg_first_token_ms)}</div></div>
+          <div class="tile"><div class="label">Rated helpful</div><div class="value">${helpful}</div><div class="sub">${d.feedback_up} up · ${d.feedback_down} down</div></div>
+          <div class="tile"><div class="label">Open tickets</div><div class="value">${d.open_tickets}</div><div class="sub">${d.total_tickets} total escalations</div></div>
+        </div>
+        <div class="card">
+          <h4>Conversations per day (last 14 days)</h4>
+          <div class="chart-max">${max}</div>
+          <div class="chart" role="img" aria-label="Conversations per day for the last 14 days">${bars}</div>
+          <div class="chart-x">${xLabels}</div>
+        </div>
+        <div class="grid-2">
+          <div class="card"><h4>Most asked-about topics</h4>${topics}</div>
+          <div class="card"><h4>Questions the assistant couldn't answer</h4>
+            <p class="muted" style="margin-top:-6px">Add these to the Knowledge Base to close the gaps.</p>
+            ${unanswered ? `<div class="table-wrap"><table>${unanswered}</table></div>` : '<div class="empty">None so far.</div>'}
+          </div>
+        </div>
+        <div class="card"><h4>Events</h4>${events ? `<table><tr><th>Event</th><th style="text-align:right">Count</th></tr>${events}</table>` : '<div class="empty">No events yet.</div>'}
+          <p class="muted">Knowledge index: ${d.knowledge_chunks} searchable passages.</p></div>`;
+    }
+
+    function updateTicketBadge(n) {
+      const b = $('#ticket-badge'); b.textContent = n; b.classList.toggle('hidden', !n);
+    }
+
+    // ---------------- conversations
+    async function renderConversations(el) {
+      const rows = await api('/api/features/admin/conversations?limit=200');
+      el.innerHTML = `
+        <div class="page-head"><h3>Conversations</h3><button class="btn" onclick="loadTab('conversations')">Refresh</button></div>
+        <div class="card table-wrap">${rows.length ? `<table>
+          <tr><th>First question</th><th>Questions</th><th>Escalated</th><th>Last activity</th></tr>
+          ${rows.map(c => `<tr class="clickable" onclick="openConversation(${c.id})"><td>${esc(c.title)}</td><td>${c.messages}</td>
+            <td>${c.escalated ? '<span class="badge OPEN">Yes</span>' : '<span class="muted">No</span>'}</td>
+            <td class="muted" style="white-space:nowrap">${esc(fmtDate(c.updated_at))}</td></tr>`).join('')}
+        </table>` : '<div class="empty">No conversations yet.</div>'}</div>`;
+    }
+
+    async function openConversation(id) {
+      const c = await api(`/api/features/admin/conversations/${id}`);
+      const msgs = c.messages.map(m => `
+        <div class="msg ${m.role === 'user' ? 'user' : 'bot'}">
+          <div class="who">${m.role === 'user' ? 'User' : 'Assistant'}</div>
+          <div class="text">${esc(m.content)}</div>
+          <div class="meta">${esc(fmtDate(m.created_at))}${m.role !== 'user' ? (m.latency_ms != null ? ` · first token ${m.latency_ms} ms` : ' · instant reply') : ''}${m.feedback ? ` · rated ${m.feedback === 'up' ? 'helpful' : 'not helpful'}` : ''}${m.sources && m.sources.length ? ` · sources: ${esc(m.sources.map(s => s.name).join(', '))}` : ''}</div>
+        </div>`).join('') || '<div class="empty">No messages.</div>';
+      openDrawer(c.title, msgs);
+    }
+
+    function openDrawer(title, bodyHtml) {
+      $('#drawer-root').innerHTML = `<div class="drawer-back" onclick="closeDrawer()"></div>
+        <div class="drawer" role="dialog" aria-label="${esc(title)}"><div class="drawer-head"><h4>${esc(title)}</h4><button class="btn small" onclick="closeDrawer()">Close</button></div>
+        <div class="drawer-body">${bodyHtml}</div></div>`;
+    }
+    function closeDrawer() { $('#drawer-root').innerHTML = ''; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+    // ---------------- tickets
+    async function renderTickets(el) {
+      const rows = await api('/api/features/admin/tickets');
+      updateTicketBadge(rows.filter(t => t.status !== 'RESOLVED').length);
+      el.innerHTML = `
+        <div class="page-head"><h3>Support Tickets</h3><button class="btn" onclick="loadTab('tickets')">Refresh</button></div>
+        <p class="muted" style="margin-top:-8px">Created automatically when a user asks for a human or the assistant hands off.</p>
+        <div class="card table-wrap">${rows.length ? `<table>
+          <tr><th>#</th><th>Issue</th><th>Status</th><th>Created</th><th></th></tr>
+          ${rows.map(t => `<tr><td>#${t.id}</td><td>${esc(t.issue)}</td><td>${badge(t.status)}</td>
+            <td class="muted" style="white-space:nowrap">${esc(fmtDate(t.created_at))}</td>
+            <td><div class="actions">
+              <select aria-label="Change status of ticket ${t.id}" onchange="setTicketStatus(${t.id}, this.value)" style="width:auto;padding:5px 8px;font-size:12px">
+                ${['OPEN', 'IN_PROGRESS', 'RESOLVED'].map(s => `<option value="${s}" ${s === t.status ? 'selected' : ''}>${STATUS_LABEL[s]}</option>`).join('')}
+              </select>
+              ${t.conversation_id ? `<button class="btn small" onclick="openConversation(${t.conversation_id})">View chat</button>` : ''}
+            </div></td></tr>`).join('')}
+        </table>` : '<div class="empty">No tickets. 🎉</div>'}</div>`;
+    }
+    async function setTicketStatus(id, status) {
+      try { await api(`/api/features/admin/tickets/${id}`, { method: 'PATCH', body: JSON.stringify({ status }) }); toast('Ticket updated'); loadTab('tickets'); }
+      catch (e) { if (e.message !== 'unauthorized') toast(e.message); }
+    }
+
+    // ---------------- knowledge base
+    let docsCache = [];
+    async function renderKnowledge(el) {
+      docsCache = await api('/api/features/admin/documents');
+      el.innerHTML = `
+        <div class="page-head"><h3>Knowledge Base</h3>
+          <div class="actions"><button class="btn" id="reindex-btn" onclick="reindex()">Reload knowledge_base folder</button><button class="btn primary" onclick="editDoc()">+ New article</button></div></div>
+        <p class="muted" style="margin-top:-8px">Published articles are searchable by the assistant immediately, alongside the 80 built-in topic files.
+          Drafts are not used for answers.</p>
+        <div class="card table-wrap">${docsCache.length ? `<table>
+          <tr><th>Title</th><th>Topic</th><th>Status</th><th>Updated</th><th></th></tr>
+          ${docsCache.map(d => `<tr><td>${esc(d.title)}</td><td>${esc(d.topic)}</td><td>${badge(d.status)}</td>
+            <td class="muted" style="white-space:nowrap">${esc(fmtDate(d.updated_at || d.created_at))}</td>
+            <td><div class="actions">
+              <button class="btn small" onclick="editDoc(${d.id})">Edit</button>
+              <button class="btn small" onclick="setDocStatus(${d.id}, '${d.status === 'PUBLISHED' ? 'DRAFT' : 'PUBLISHED'}')">${d.status === 'PUBLISHED' ? 'Unpublish' : 'Publish'}</button>
+              <button class="btn small danger" onclick="deleteDoc(${d.id})">Delete</button>
+            </div></td></tr>`).join('')}
+        </table>` : '<div class="empty">No custom articles yet. Add one to teach the assistant something new — e.g. a new feature, policy or promotion.</div>'}</div>`;
+    }
+
+    function editDoc(id) {
+      const d = docsCache.find(x => x.id === id) || { title: '', topic: '', content: '', status: 'DRAFT' };
+      openDrawer(id ? 'Edit article' : 'New article', `
+        <form id="doc-form">
+          <label for="doc-title">Title</label><input type="text" id="doc-title" required maxlength="200" value="${esc(d.title)}">
+          <label for="doc-topic">Topic <span class="muted" style="font-weight:400">(optional, e.g. Payments)</span></label><input type="text" id="doc-topic" maxlength="120" value="${esc(d.topic)}">
+          <label for="doc-content">Content</label>
+          <textarea id="doc-content" required placeholder="Write the facts and steps the assistant should know. Plain text or Markdown.">${esc(d.content)}</textarea>
+          <div class="error" id="doc-error"></div>
+          <div class="actions" style="margin-top:8px">
+            <button class="btn primary" type="submit" data-status="PUBLISHED">Save &amp; publish</button>
+            <button class="btn" type="submit" data-status="DRAFT">Save as draft</button>
+          </div>
+        </form>`);
+      const form = $('#doc-form');
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const status = (e.submitter && e.submitter.dataset.status) || 'DRAFT';
+        const body = { title: $('#doc-title').value.trim(), topic: $('#doc-topic').value.trim(), content: $('#doc-content').value, status };
+        form.querySelectorAll('button').forEach(b => b.disabled = true);
+        try {
+          await api(id ? `/api/features/admin/documents/${id}` : '/api/features/admin/documents',
+                    { method: id ? 'PATCH' : 'POST', body: JSON.stringify(body) });
+          closeDrawer(); toast(status === 'PUBLISHED' ? 'Published: the assistant can use it now' : 'Saved as draft'); loadTab('knowledge');
+        } catch (err) {
+          if (err.message !== 'unauthorized') $('#doc-error').textContent = err.message;
+          form.querySelectorAll('button').forEach(b => b.disabled = false);
+        }
+      });
+    }
+    async function setDocStatus(id, status) {
+      try { await api(`/api/features/admin/documents/${id}`, { method: 'PATCH', body: JSON.stringify({ status }) }); toast(status === 'PUBLISHED' ? 'Published' : 'Unpublished'); loadTab('knowledge'); }
+      catch (e) { if (e.message !== 'unauthorized') toast(e.message); }
+    }
+    async function deleteDoc(id) {
+      if (!confirm('Delete this article? The assistant will stop using it.')) return;
+      try { await api(`/api/features/admin/documents/${id}`, { method: 'DELETE' }); toast('Deleted'); loadTab('knowledge'); }
+      catch (e) { if (e.message !== 'unauthorized') toast(e.message); }
+    }
+    async function reindex() {
+      const btn = $('#reindex-btn'); btn.disabled = true; btn.textContent = 'Reloading…';
+      try { const r = await api('/api/features/admin/reindex', { method: 'POST' }); toast(`Knowledge base reloaded: ${r.knowledge_chunks} passages`); }
+      catch (e) { if (e.message !== 'unauthorized') toast(e.message); }
+      finally { btn.disabled = false; btn.textContent = 'Reload knowledge_base folder'; }
+    }
+
+    boot();
+  </script>
+</body>
+</html>
