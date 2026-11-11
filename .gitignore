@@ -32,3 +32,6 @@ test_results*.txt
 e2e_test_output.txt
 extraction_report.json
 evaluation_report.md
+
+.vercel
+.env*
